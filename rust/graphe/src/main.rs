@@ -83,16 +83,16 @@ fn dijkstra(graphe: HashMap<String, HashMap<String, i32>>, depart: String, arriv
         }
 
     }
-    println!("Distances : ");
+    /*println!("Distances : ");
     for (key, value) in &distance {
         println!("{} - {}",key,value);
-    }
+    }*/
 
     noeud_courant = arrive;
-    print!("Solution : {} ",noeud_courant);
+    //print!("Solution : {} ",noeud_courant);
     loop{
         noeud_courant = chemins.get(&noeud_courant).unwrap().to_string();
-        print!("- {} ",noeud_courant);
+        //print!("- {} ",noeud_courant);
         if noeud_courant == String::from("A"){
             break;
         }

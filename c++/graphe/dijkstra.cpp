@@ -80,16 +80,16 @@ void dijkstra(unordered_map<string, unordered_map<string, int>> graphe, string d
         noeud_courant = noeud_mini;
         distance_mini = inf;
     }
-    cout << "Distances : " << endl;
+    /*cout << "Distances : " << endl;
     for(unordered_map<string, int>:: iterator  itr = distance.begin(); itr != distance.end(); itr++){
         cout << itr->first << " - " << itr->second << endl;
-    }
+    }*/
 
     noeud_courant = arrive;
-    cout << "Solution : " << noeud_courant;
+    //cout << "Solution : " << noeud_courant;
     while(noeud_courant != depart){
         noeud_courant = chemins.at(noeud_courant);
-        cout << " - " <<noeud_courant;
+        //cout << " - " <<noeud_courant;
     }
 }
 
