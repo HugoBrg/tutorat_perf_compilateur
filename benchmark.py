@@ -116,7 +116,7 @@ os.system(cplus_compile_intel_ofast)
 cplus_runtime_intel_ofast = timeit.repeat(cplus, repeat=repeat, number=number)
 
 print("=====================================================================================================================")
-########################## RUST ##########################
+########################## RUST/rustc ##########################
 os.chdir("../..")
 os.chdir("rust/graphe/src")
 rust_compile = "rustc main.rs"
@@ -127,6 +127,24 @@ import os
 os.system("./main")"""
 
 rust_runtime = timeit.repeat(rust, repeat=repeat, number=number)
+
+########################## RUST/rustc -C opt-level=1 ##########################
+rust_compile_1 = "rustc -C opt-level=1 main.rs"
+os.system(rust_compile_1)
+
+rust_runtime_1 = timeit.repeat(rust, repeat=repeat, number=number)
+
+########################## RUST/rustc -C opt-level=2 ##########################
+rust_compile_2 = "rustc -C opt-level=2 main.rs"
+os.system(rust_compile_2)
+
+rust_runtime_2 = timeit.repeat(rust, repeat=repeat, number=number)
+
+########################## RUST/rustc -C opt-level=3 ##########################
+rust_compile_3 = "rustc -C opt-level=3 main.rs"
+os.system(rust_compile_3)
+
+rust_runtime_3 = timeit.repeat(rust, repeat=repeat, number=number)
 
 print("=====================================================================================================================")
 ########################## DATA ##########################
@@ -151,6 +169,9 @@ times_df["intel -O3"] = cplus_runtime_intel_o3
 times_df["intel -Ofast"] = cplus_runtime_intel_ofast
 
 times_df["rustc"] = rust_runtime
+times_df["rustc -1"] = rust_runtime_1
+times_df["rustc -2"] = rust_runtime_2
+times_df["rustc -3"] = rust_runtime_3
 
 mini = pd.DataFrame(times_df.min()).transpose()
 maxi = pd.DataFrame(times_df.max()).transpose()
@@ -178,4 +199,5 @@ times_df = times_df.rename({repeat+2:'mean'})
 #times_df = times_df.rename({repeat+3:'score'})
 
 print(times_df)
+os.chdir("../../..")
 times_df.to_csv (r"execution_times.csv", header=True)
