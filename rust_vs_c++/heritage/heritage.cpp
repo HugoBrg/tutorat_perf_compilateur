@@ -5,38 +5,32 @@
 using namespace std;
 
 class Forme {
+    private:
+        string nom;
     public:
-        Forme(){};
-        int aire();
+        Forme(string n){
+            nom = n;
+        };
+        string who_am_i() const{
+            return nom; 
+        }
 };
 
 class Rectangle : public Forme {
-        int largeur, longueur;
     public:
-        Rectangle (int x, int y) {
-            largeur = x;
-            longueur = y;
-        }
-        int aire () {
-            return largeur*longueur;
-        }
+        Rectangle (string n) : Forme(n){}
 };
 
 class Carre : public Forme {
-        int cote;
     public:
-        Carre (int x) {
-            cote = x;
-        }
-        int aire () {
-            return cote*cote;
-        }
+        Carre (string n) : Forme(n){}
 };
 
 int main () {
-    Rectangle rectangleObjet(3,4);
-    cout << "c++  - rectangle aire: " << rectangleObjet.aire() << endl;
-    Carre carreObjet(3);
-    cout << "c++  - carre aire: " << carreObjet.aire() << endl;
+    Rectangle rectangleObjet("rectangle");
+    cout << "c++  - rectangle : " << rectangleObjet.who_am_i() << endl;
+    Carre carreObjet("carré");
+    cout << "c++  - carre : " << carreObjet.who_am_i() << endl;
     return 0;
 }
+
